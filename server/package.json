@@ -2,10 +2,12 @@
   "name": "url-shortener",
   "version": "1.0.0",
   "description": "Url shortener is simple program, created just for fun. That's helpful when your links are damn long.",
-  "main": "server.js",
+  "main": "./dist/server.bundle.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js -q"
+    "start": "node ./dist/server.bundle.js",
+    "dev": "nodemon ./dist/server.bundle.js -q",
+    "build": "webpack --mode production",
+    "watch": "webpack --watch --mode development"
   },
   "keywords": [],
   "author": "Bartosz Pazdur <b.pazdur@yahoo.com>",
