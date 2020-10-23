@@ -2,6 +2,7 @@ const express = require('express')
 const yup = require('yup')
 const morgan = require('morgan')
 const monk = require('monk')
+const {nanoid} = require('nanoid')
 const cors = require('cors')
 const path = require('path')
 require('dotenv').config()
@@ -14,11 +15,9 @@ app.use(cors())
 app.use(express.static('./public'))
 
 const database = monk(process.env.MONGODB_URI)
-const urls = database.get('urls')
+const urls_collection = database.get('urls')
 
-urls.createIndex({slug: 1}, {unique: true})
 
-app.get('/', (req, res) => res.json('sdadasd'))
 
 const PORT = process.env.PORT || 3000
 
