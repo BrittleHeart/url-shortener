@@ -3,6 +3,7 @@ import UrlController from '../controllers/UrlController'
 
 const urls = new UrlController()
 
-app.get('/all/urls', async (req, res) => await urls.index(req, res))
-app.get('/:id', async (req, res) => await urls.redirectToUrl(req, res))
+app.get('/urls', async (req, res) => await urls.index(req, res))
+app.get('/urls/:id', async (req, res) => await urls.redirectToUrl(req, res))
+app.get('/404', (req, res) => urls.notFound(req, res))
 app.post('/urls', async (req, res) => await urls.store(req, res))

@@ -1,16 +1,9 @@
 import {urls_collection} from '../server'
-import * as path from 'path'
 import * as yup from 'yup'
 const {nanoid} = require('nanoid')
-// import nanoid from nanoid
 
-const nouPathFound = path.resolve('../public/404.html')
 
 class UrlController {
-    notFound(req, res) {
-        return res.status(200).sendFile(nouPathFound)
-    }
-
     async redirectToUrl(req, res) {
         const {id: slug} = req.params
 
@@ -21,6 +14,9 @@ class UrlController {
         
         if(!urls)
             return res.status(404).redirect('/')
+        else if(slug !== urls.slug)
+            return res.status(404).redirect('/')
+
         
         return res.status(200).redirect(urls.url)
     }
