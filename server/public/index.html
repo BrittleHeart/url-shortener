@@ -8,6 +8,7 @@
 </head>
 <body>
     <div id="app" class="app">
+        
         <header class="wrapper">
             <section class="column">
                 <h1 class="heading">Twoje linki</h1>
@@ -40,7 +41,9 @@
                         <input type="text" v-model="slug" class="input" id="slug" placeholder="Skrócona forma ..">
                     </div>
 
-                    <button type="submit" class="button">Zapisz</button>
+                    <p v-if="loading">Loading...</p>
+                    <button type="submit" class="button" v-else>Zapisz</button>
+
                 </form>
             </section>
         </header>

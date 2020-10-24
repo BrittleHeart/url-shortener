@@ -3,6 +3,7 @@ const app = new Vue({
     data: {
         url: '',
         slug: '',
+        loading: false,
         name,
         urls: []
     },
@@ -20,13 +21,22 @@ const app = new Vue({
         },
 
         async createUrl() {
-            await fetch(`http://localhost:3000/urls`, {
+            this.loading = true
+
+            const response = await fetch(`http://localhost:3000/urls`, {
                 method: 'POST',
                 headers: {
                     "Content-Type": 'application/json;charset=utf-8',
                 },
                 body: JSON.stringify({name: this.name, url: this.url, slug: this.slug ? this.slug : undefined})
             })
+            
+            this.loading = false
+
+            const data = await response.json()
+            const newUrl = data.save_url
+
+            this.urls.push(newUrl)
         }
     },
     created() {
