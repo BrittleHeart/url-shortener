@@ -31,14 +31,15 @@ class UrlController {
     }
 
     async store(req, res) {
-        let {url, slug} = req.body
+        let {name, url, slug} = req.body
 
         const schema = yup.object().shape({
+            name: yup.string().min(3).max(30).trim().required(),
             url: yup.string().min(3).url().trim().required(),
             slug: yup.string().min(3).max(10).matches('[a-zA-Z0-9#-_]')
         })
 
-        try{await schema.validate({url, slug})}
+        try{await schema.validate({name, url, slug})}
         catch(error) {return res.status(400).json({status: 400, message: error.message})}
 
         const slug_exists = await urls_collection.findOne({slug})
@@ -51,7 +52,7 @@ class UrlController {
         else
             slug = slug.toLowerCase()
         
-        const save_url = await urls_collection.insert({url, slug})
+        const save_url = await urls_collection.insert({name, url, slug})
         if(!save_url)
             return res.status(500).json({status: 500, message: 'New url has not been created.'})
 

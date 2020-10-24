@@ -8,9 +8,41 @@
 </head>
 <body>
     <div id="app" class="app">
-        <header class="heading">
-            <h1>Preety, quick url shortener from me to you</h1>
-            <p>I hope you'll find that useful</p>
+        <header class="wrapper">
+            <section class="column">
+                <h1 class="heading">Twoje linki</h1>
+                <hr class="divider">
+
+                <ul class="list">
+                    <li class="list-item" v-for="url in urls" :key="url._id">
+                        <span>{{url.name}}</span>
+                        <a :href="`http://localhost:3000/urls/${url.slug}`" class="item-link">
+                            http://shrt.pl/{{url.slug}}
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            <section class="column">
+                <h1 class="heading">Dodaj Nowy</h1>
+                <hr class="divider">
+
+                <form @submit.prevent="createUrl" class="form">
+                    <div class="form-group">
+                        <label for="name">Name <i class="error">*</i></label>
+                        <input type="text" v-model="name" class="input" id="name" placeholder="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="url">URL ..<i class="error">*</i></label>
+                        <input type="text" v-model="url" class="input" id="url" placeholder="Url ..">
+                    </div>
+                    <div class="form-group">
+                        <label for="slug">Skrócona forma</label>
+                        <input type="text" v-model="slug" class="input" id="slug" placeholder="Skrócona forma ..">
+                    </div>
+
+                    <button type="submit" class="button">Zapisz</button>
+                </form>
+            </section>
         </header>
     </div>
 
