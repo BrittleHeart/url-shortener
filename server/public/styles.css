@@ -5,12 +5,27 @@
     font-family: Arial, sans-serif;
 }
 
+@keyframes show-new-url {
+    from {
+        transform: translate(40%, 0);
+    }
+    to {
+        transform: translate(0, 0);
+    }
+}
+
 body {
     background: url("./bg.jpg");
     background-position: center;
     background-attachment: fixed;
     background-size: cover;
 }
+
+[v-cloak] {
+    display: none;
+}
+
+.error {color: red;}
 
 .app {
     width: 100vw;
@@ -39,7 +54,7 @@ body {
 }
 
 .wrapper .column:nth-child(2){
-    background-color: rgba(250, 250, 250, 1);
+    background-color: rgb(255, 255, 255);
     height: 70vh;
     max-height: 70vh;
     width: 40%;
@@ -55,7 +70,7 @@ body {
 }
 
 .wrapper .column .divider {
-    background-color: rgba(100, 100, 100, .5);
+    background-color: rgb(255, 255, 255);
 }
 
 .wrapper .column .list {
@@ -68,7 +83,7 @@ body {
 .wrapper .column .list .list-item {
     width: 100%;
     max-width: 100%;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: rgb(255, 255, 255);
     padding: 10px 30px;
     border-radius: 5px;
     transition: background-color 0.4s ease;
@@ -76,6 +91,7 @@ body {
     justify-content: space-between;
     align-items: center;
     margin: 20px auto;
+    animation: show-new-url 0.5s 0s ease;
 }
 
 .wrapper .column .list .list-item span{
@@ -90,4 +106,63 @@ body {
     text-decoration: none;
     color: rgba(9, 130, 243, 1);
     font-size: 1.2rem;
+}
+
+.form {
+    width: 65%;
+    max-width: 65%;
+    margin: 20px 10px;
+    padding: 5px;
+}
+
+.form .form-group {
+    width: 100%;
+    max-width: 100%;
+    font-family: 'Nunito', sans-serif;
+    padding: 10px;
+}
+
+.form .form-group label {
+    color: #ccc;
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+
+}
+
+.form .form-group input {
+    font-family: 'Nunito', sans-serif;
+    outline: none;
+    width: 100%;
+    max-width: 100%;
+    padding: 4px 10px;
+    border-radius: 3px;
+    background: none;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #ccc;
+    font-size: 1.2rem;
+    transition: border 0.2s ease;
+}
+
+.form .form-group input:focus {
+    border: 1px solid rgba(120, 120, 255, 1);
+}
+
+.form .form-group .button {
+    width: 100%;
+    max-width: 100%;
+    padding: 3px 7px;
+    line-height: 1.6;
+    border: 1px solid rgb(22, 154, 241);
+    background-color: rgb(22, 154, 241);
+    margin-top: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: white;
+    transition: box-shadow .4s ease;
+}
+
+.form .form-group .button:hover {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }

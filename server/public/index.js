@@ -9,12 +9,16 @@ const app = new Vue({
     },
     methods: {
         async fetchData() {
+            this.loading = true;
+
             const response = await fetch(`http://localhost:3000/urls`, {
                 method: 'GET',
                 headers: {
                     "Content-Type": 'application/json;charset=utf-8',
                 },
             })
+
+            this.loading = false;
 
             const getResponse = await response.json()
             this.urls = getResponse.urls
@@ -37,6 +41,10 @@ const app = new Vue({
             const newUrl = data.save_url
 
             this.urls.push(newUrl)
+
+            this.url = ""
+            this.name = ""
+            this.slug ? this.slug = "" : ''
         }
     },
     created() {
